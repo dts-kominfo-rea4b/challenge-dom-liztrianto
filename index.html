@@ -9,33 +9,82 @@
   <body>
     <div id="app">
       <!-- TODO: Buatlah sebuah header dengan id todo-title -->
+      <h1 id="todo-title"> To Do List</h1>
       <!-- TODO: Buatlah sebuah subtitle dengan id todo-subtitle -->
-
+      <h3 id="todo-subtitle">~ Today I need to ~</h3>
       <!-- Section: input -->
       <!-- TODO: Buatlah sebuah input bertipe text dengan id todo-input -->
       <!-- TODO: Buatlah sebuah button dengan id todo-submit -->
-
+      <section class="input">
+        <input id="todo-input" type="text" autofocus />
+        <button id="todo-submit">Submit</button>
+      </section>
       <!-- Section output -->
       <!-- TODO: Buatlah sebuah <ul> dengan id todo-output -->
+        <ul id="todo-output"></ul>
     </div>
 
     <!-- ! Untuk tantangan ini, script jangan diubah ke external js yah ! -->
     <script>
       // TODO: Deklarasi variable sesuai dengan kebutuhan di sini
-      let button;
-      let input;
-      let output;
+      let button = document.querySelector('#todo-submit');
+      let input = document.getElementById('todo-input');
+      let output = document.querySelector('#todo-output');
 
       // TODO: Buatlah sebuah fungsi dengan nama fnClickHandler
       // Fungsi yang digunakan untuk menambahkan tulisan
       // Jangan ubah cara deklarasi fungsinya, cukup isi saja
-      function fnClickHandler(toDoItem) {}
+      function fnClickHandler(toDoItem) {
+        const li = document.createElement('li');
+        li.setAttribute('string', 'none');
+        li.innerHTML = toDoItem;
+        output.appendChild(li);
+        input.value = '';
+      }
 
       // TODO: register event onclick / addEventListener untuk button
       // akan menjalankan fungsi fnClickHandler
+      button.onclick = (event) => {
+        fnClickHandler(input.value);
+      };
       
       // TODO: register event onkeypress / addEventListener untuk input
       // sehingga saat di input ditekan enter akan menjalankan fungsi fnClickHandler juga
+      input.onkeypress = (event) => {
+        if (event.key === 'Enter') {
+          fnClickHandler(input.value);
+        }
+      };
+
     </script>
+    <style>
+        body {
+            background-color: #1c9df4;
+        }
+
+        #app {
+            background-color: rgb(255, 255, 255);
+            width: 400px;
+            height: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            position: absolute;
+            margin-left: 35%;
+            margin-top: 30px;
+            text-align: center;
+        }
+        #todo-title{
+          background-color: #0ffa1b;
+        }
+
+        #todo-input {
+          width: 300px;
+          height: 30px;
+
+        }
+        #todo-output{
+          text-align: left;
+        }
+    </style>
   </body>
 </html>
